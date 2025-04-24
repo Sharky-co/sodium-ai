@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Sodium AI Works</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2D1441 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-header h1 {
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+        }
+
+        .about-header p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ai-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .process-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .process-card i {
+            font-size: 2.5rem;
+            color: #8A2BE2;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .process-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .user-groups {
+            margin-top: 4rem;
+        }
+
+        .user-group {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 15px rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .user-group h2 {
+            color: #8A2BE2;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-group h2 i {
+            font-size: 1.5rem;
+        }
+
+        .user-group p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .features-list li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list li i {
+            color: #8A2BE2;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #8A2BE2;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #6B1FA8;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                margin: 80px auto;
+                padding: 0 1rem;
+            }
+
+            .process-card {
+                padding: 1.5rem;
+            }
+
+            .user-group {
+                padding: 1.5rem;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: #8A2BE2;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Logo styles */
+        .logo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: rotate(180deg);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(180deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(180deg) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sodium AI</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="workouts.html">Workouts</a></li>
+                <li><a href="nutrition.html">Nutrition</a></li>
+            </ul>
+            <a href="downloads.html" class="cta-button">Download App</a>
+        </nav>
+    </header>
+
+    <div class="about-container">
+        <div class="about-header">
+            <h1>How Sodium AI Works</h1>
+            <p>Sodium AI uses advanced machine learning to create personalized workout routines based on your unique needs, schedule, and fitness goals.</p>
+        </div>
+
+        <div class="ai-process">
+            <div class="process-card">
+                <i class="fas fa-brain"></i>
+                <h3>Data Collection</h3>
+                <p>Sodium collects information about your fitness level, available time, equipment, and goals to create a comprehensive profile.</p>
+            </div>
+            <div class="process-card">
+                <i class="fas fa-cogs"></i>
+                <h3>Analysis</h3>
+                <p>The system analyzes your data against thousands of successful workout patterns to identify the most effective approach for you.</p>
+            </div>
+            <div class="process-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Adaptation</h3>
+                <p>As you progress, the Sodium continuously adjusts your routine based on your performance and feedback to ensure optimal results.</p>
+            </div>
+        </div>
+
+        <div class="user-groups">
+            <div class="user-group">
+                <h2><i class="fas fa-graduation-cap"></i> High School Students</h2>
+                <p>Sodium AI understands the unique challenges faced by high school students:</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Adapts to busy school schedules and extracurricular activities</li>
+                    <li><i class="fas fa-check"></i> Creates quick, effective workouts for limited time windows</li>
+                    <li><i class="fas fa-check"></i> Focuses on bodyweight exercises for home workouts</li>
+                    <li><i class="fas fa-check"></i> Helps build confidence and healthy habits early in life</li>
+                </ul>
+            </div>
+
+            <div class="user-group">
+                <h2><i class="fas fa-university"></i> College Students</h2>
+                <p>College life presents unique fitness challenges that Sodium AI addresses:</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Works around irregular class schedules</li>
+                    <li><i class="fas fa-check"></i> Adapts to dorm room or limited equipment situations</li>
+                    <li><i class="fas fa-check"></i> Helps manage stress through targeted workouts</li>
+                    <li><i class="fas fa-check"></i> Provides quick workouts for study breaks</li>
+                </ul>
+            </div>
+
+            <div class="user-group">
+                <h2><i class="fas fa-briefcase"></i> Working Professionals</h2>
+                <p>For those balancing career and fitness, Sodium AI offers:</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Morning or evening workout options</li>
+                    <li><i class="fas fa-check"></i> Office-friendly exercises for busy days</li>
+                    <li><i class="fas fa-check"></i> Progressive routines that adapt to your energy levels</li>
+                    <li><i class="fas fa-check"></i> Stress-reducing workouts for work-life balance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="downloads.html" class="cta-button">Start Your AI-Powered Fitness Journey</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sodium AI</h4>
+                <p>Your journey to a better life starts here.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="workouts.html">Workouts</a></li>
+                    <li><a href="nutrition.html">Nutrition</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sodium AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle with error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

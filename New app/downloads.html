@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Sodium AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2D1441 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .downloads-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+
+        .downloads-container h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+        }
+
+        .downloads-container p {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .platform-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(138, 43, 226, 0.2);
+            transition: transform 0.3s;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #8A2BE2;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+        }
+
+        .platform-card h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background-color: #8A2BE2;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+        }
+        
+        .download-button:hover {
+            background-color: #6B1FA8;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .logo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: rotate(180deg);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(180deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(180deg) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sodium AI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="workouts.html">Workouts</a></li>
+                <li><a href="nutrition.html">Nutrition</a></li>
+            </ul>
+            <a href="downloads.html" class="cta-button">Download App</a>
+        </nav>
+    </header>
+
+    <div class="downloads-container">
+        <h1>Download Sodium AI</h1>
+        <p>Choose your platform to get started with Sodium AI</p>
+        
+        <div class="platform-grid">
+            <div class="platform-card">
+                <i class="fab fa-windows platform-icon"></i>
+                <h3>Windows</h3>
+                <p>Version 1.0.0</p>
+                <a href="#" class="download-button">Download for Windows</a>
+            </div>
+            <div class="platform-card">
+                <i class="fab fa-apple platform-icon"></i>
+                <h3>iOS</h3>
+                <p>Version 1.0.0</p>
+                <a href="#" class="download-button">Download for iOS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sodium AI</h4>
+                <p>Your journey to a better life starts here.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="workouts.html">Workouts</a></li>
+                    <li><a href="nutrition.html">Nutrition</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sodium AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 

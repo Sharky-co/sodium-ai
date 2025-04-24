@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodium AI - Your Ultimate Workout AI Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero::before {
+            left: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+
+        .hero::after {
+            right: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .primary-button,
+        .secondary-button {
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .primary-button {
+            background: #8A2BE2;
+            color: white;
+            border: none;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .primary-button:hover {
+            background: #6B1FA8;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .workout-card {
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .workout-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .workout-icon {
+            font-size: 3rem;
+            color: #8A2BE2;
+            margin-bottom: 1rem;
+        }
+
+        .workout-card h3 {
+            color: white;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .workout-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .workout-types h2 {
+            text-align: center;
+            color: white;
+            margin: 2rem 0;
+            font-size: 2rem;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .primary-button,
+            .secondary-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .workout-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .workout-card {
+                padding: 1.5rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 26, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        .logo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: rotate(180deg);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(180deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(180deg) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sodium AI</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="workouts.html">Workouts</a></li>
+                <li><a href="nutrition.html">Nutrition</a></li>
+            </ul>
+            <a href="downloads.html" class="cta-button">Download App</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Transform Your Body, Transform with AI</h1>
+                <p>Get your body in shape with the Home AI and its built in AI routine maker.</p> 
+                <div class="hero-buttons">
+                    <a href="downloads.html" class="primary-button">Download Now</a>
+                    <a href="about.html" class="secondary-button">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="fas fa-dumbbell"></i>
+                <h3>Custom Workouts</h3>
+                <p>Personalized training plans tailored to your goals and fitness level with the Home AI.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Track Progress</h3>
+                <p>Monitor your achievements and stay motivated with the Home AI.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h3>AI Routine Maker</h3>
+                <p>Create your own custom workout routines with the Home AI.</p>
+            </div>
+        </section>
+
+        <section class="workout-types">
+            <h2>Popular Workout Programs</h2>
+            <div class="workout-grid">
+                <div class="workout-card">
+                    <i class="fas fa-weight-hanging workout-icon"></i>
+                    <h3>Strength Training</h3>
+                    <p>Build muscle and increase strength</p>
+                </div>
+                <div class="workout-card">
+                    <i class="fas fa-running workout-icon"></i>
+                    <h3>Cardio</h3>
+                    <p>Improve endurance and burn calories</p>
+                </div>
+                <div class="workout-card">
+                    <i class="fas fa-om workout-icon"></i>
+                    <h3>Yoga</h3>
+                    <p>Enhance flexibility and mindfulness</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sodium AI</h4>
+                <p>Your journey to a better life starts here.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="workouts.html">Workouts</a></li>
+                    <li><a href="nutrition.html">Nutrition</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sodium AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 
